@@ -3,44 +3,42 @@ package application;
 import java.util.Locale;
 import java.util.Scanner;
 
-import ett.Product;
+import ett.Rent;
 
 public class Program {
 	public static void main(String[] args) {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
-	//	int n = sc.nextInt();
-	//	double[] vect = new double[n];
-	//	for (int i = 0; i < n; i++) {
-	//		vect[i] = sc.nextDouble();
-	//	}
-	//	double sum = 0.0;
-	//	for (int i = 0; i < n; i++) {
-	//		sum += vect[i];
-	//	}
-	//	double avg = sum / n;
-	//	System.out.printf("AVERAGE HEIGHT: %.2f%n", avg);
-	//
+		//A dona de um pensionato possui dez quartos para alugar para estudantes,sendo esses quartos identificados pelos números 0 a 9.
+		//Fazer um programa que inicie com todos os dez quartos vazios, e depois leia uma quantidade N representando o número de estudantes que vãoalugar quartos (N pode ser de 1 a 10). Em seguida, registre o aluguel dosN estudantes.
+		//Para cada registro de aluguel, informar o nome e email do	estudante, bem como qual dos quartos ele escolheu (de 0 a 9).
+		//Suponha que seja escolhido um quarto vago. 
+		//Ao final, seu programa deve imprimir um relatório de todas ocupações do pensionato, por ordem de quarto, conforme exemplo.		
+		Rent[] vect = new Rent[10];
 		
+		System.out.print("How many rooms will be rented? ");
 		int n = sc.nextInt();
-		Product[] vect = new Product[n];
-		
-		for( int i=0; i<n; i++) {
+		for (int i = 1; i <= n; i++) {
+			System.out.println();
+			System.out.println("Rent #" + i + ":");
+			System.out.print("Name: ");
 			sc.nextLine();
 			String name = sc.nextLine();
-			double price  = sc.nextDouble();
-			vect[i] = new Product(name,price);
-			// esse for le os produtos instancia os objetos e guarda nas posições do vetor
+			System.out.print("Email: ");
+			String email = sc.nextLine();
+			System.out.print("Room: ");
+			int room = sc.nextInt();
+			
+			vect[room] = new Rent(name, email);
 		}
 		
-		double sum = 0.0;
-		for(int i =0; i<n; i++) {
-			sum += vect[i].getPrice();
+		System.out.println();
+		System.out.println("Busy rooms:");
+		for (int i = 0; i < 10; i++) {
+			if (vect[i] != null) {
+				System.out.println(i + ": " + vect[i]);
+			}
 		}
-		
-		double avg = sum / n;
-		
-		System.out.printf("AVENGE PRICE = %.2f%n", avg);
 		sc.close();
 	}
 }
